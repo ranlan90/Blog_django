@@ -25,7 +25,7 @@ SECRET_KEY = '3vf@&qtzx6kqxp4kk=-_@mm6wes&47k1w*8*rjv)7okhqa9zx%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost', '.yueqi.cf']
+ALLOWED_HOSTS = ['127.0.0.1','localhost', '*']
 
 
 # Application definition
