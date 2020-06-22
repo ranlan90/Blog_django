@@ -1,5 +1,6 @@
 from django import template
 from blog.models import Post,Category,Tag
+from django.db.models import Count
 register = template.Library()
 
 
@@ -15,9 +16,12 @@ def show_archives():
 
 @register.inclusion_tag('blog/inclusions/_categories.html')
 def show_category():
-    return {'category_list': Category.objects.all()}
+    category_list = Category.objects.annotate(num_posts=Count('post')).filter(num_posts__gt=0)
+    return {'category_list': category_list}
 
 
 @register.inclusion_tag('blog/inclusions/_tags.html')
 def show_tag():
-    return {'tag_list': Tag.objects.all()}
+    tag_list = Tag.objects.annotate(num_posts=Count('post')).filter(num_posts__gt=0)
+    print(tag_list)
+    return {'tag_list': tag_list}
