@@ -109,3 +109,14 @@ class PostDetailView(DetailView):
     #     return post
 
 
+class Full_width(IndexView):
+    template_name = 'blog/full-width.html'
+
+
+
+def about(request):
+    return render(request,'blog/about.html')
+
+
+def contact(request):
+    return render(request,'blog/contact.html')
