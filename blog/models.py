@@ -39,7 +39,7 @@ class Post(models.Model):
     title = models.CharField('标题',max_length=50)
     body = models.TextField('正文')
     excerpt = models.CharField(max_length=200,blank=True,null=True,verbose_name='摘要')
-    create_time = models.DateTimeField('创建时间',auto_now_add=True)
+    create_time = models.DateTimeField('创建时间',default=timezone.now)
     edit_time = models.DateTimeField('修改时间',auto_now=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='分类')
     views = models.PositiveIntegerField(default=0, editable=False)
@@ -75,6 +75,8 @@ class Post(models.Model):
         ordering = ['-create_time']
 
     def save(self,*args,**kwargs):
+        self.edit_time = timezone.now()
+
         md = markdown.Markdown(extensions=[
             'markdown.extensions.extra',
             'markdown.extensions.codehilite',
