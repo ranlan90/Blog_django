@@ -23,7 +23,7 @@ class IndexView(PaginationMixin,ListView):
     model = models.Post
     template_name = 'blog/index.html'
     context_object_name = 'postlist'
-    paginate_by = 10
+    paginate_by = 5
 
 
 class SearchView(IndexView):
